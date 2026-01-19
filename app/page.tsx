@@ -48,74 +48,77 @@ export default function Home() {
         </div>
 
         {/* Team Photos Carousel - Full Screen Width */}
-        <div className="relative w-screen left-1/2 right-1/2 -mx-[50vw] overflow-x-hidden mb-20" style={{ perspective: '2000px' }}>
-          <div className="flex items-center justify-center gap-6 py-16" style={{ transformStyle: 'preserve-3d' }}>
-            {/* Extrémités - LES PLUS GRANDES (paire 1) */}
-            <div className="flex-shrink-0 w-64 h-96 rounded-2xl overflow-hidden shadow-2xl opacity-30" style={{ transform: 'rotateY(65deg) translateZ(280px)' }}>
-              <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=700&fit=crop"
-                alt="Team member"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            {/* Paire 2 */}
-            <div className="flex-shrink-0 w-52 h-80 rounded-2xl overflow-hidden shadow-2xl opacity-45" style={{ transform: 'rotateY(50deg) translateZ(220px)' }}>
-              <img
-                src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=500&h=700&fit=crop"
-                alt="Team member"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            {/* Paire 3 */}
-            <div className="flex-shrink-0 w-44 h-68 rounded-2xl overflow-hidden shadow-2xl opacity-60" style={{ transform: 'rotateY(30deg) translateZ(150px)' }}>
-              <img
-                src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=500&h=700&fit=crop"
-                alt="Team member"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            {/* Centre - LES PLUS PETITES (paire 4) */}
-            <div className="flex-shrink-0 w-32 h-48 rounded-2xl overflow-hidden shadow-2xl" style={{ transform: 'rotateY(8deg) translateZ(40px)' }}>
-              <img
-                src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=500&h=700&fit=crop"
-                alt="Team member"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="flex-shrink-0 w-32 h-48 rounded-2xl overflow-hidden shadow-2xl" style={{ transform: 'rotateY(-8deg) translateZ(40px)' }}>
-              <img
-                src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500&h=700&fit=crop"
-                alt="Team member"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            {/* Paire 3 miroir */}
-            <div className="flex-shrink-0 w-44 h-68 rounded-2xl overflow-hidden shadow-2xl opacity-60" style={{ transform: 'rotateY(-30deg) translateZ(150px)' }}>
-              <img
-                src="https://images.unsplash.com/photo-1556157382-97eda2d62296?w=500&h=700&fit=crop"
-                alt="Team member"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            {/* Paire 2 miroir */}
-            <div className="flex-shrink-0 w-52 h-80 rounded-2xl overflow-hidden shadow-2xl opacity-45" style={{ transform: 'rotateY(-50deg) translateZ(220px)' }}>
-              <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=700&fit=crop"
-                alt="Team member"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            {/* Extrémité droite - LA PLUS GRANDE (paire 1 miroir) */}
-            <div className="flex-shrink-0 w-64 h-96 rounded-2xl overflow-hidden shadow-2xl opacity-30" style={{ transform: 'rotateY(-65deg) translateZ(280px)' }}>
-              <img
-                src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=500&h=700&fit=crop"
-                alt="Team member"
-                className="w-full h-full object-cover"
-              />
-            </div>
+      </main>
+      
+      <div className="w-full overflow-hidden mb-20" style={{ perspective: '2000px' }}>
+        <div className="flex items-center justify-center gap-6 py-16 px-8" style={{ transformStyle: 'preserve-3d' }}>
+          {/* Extrémités - LES PLUS GRANDES (paire 1) */}
+          <div className="flex-shrink-0 w-72 h-[28rem] rounded-2xl overflow-hidden shadow-2xl opacity-30" style={{ transform: 'rotateY(65deg) translateZ(280px)' }}>
+            <img
+              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=700&fit=crop"
+              alt="Team member"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          {/* Paire 2 */}
+          <div className="flex-shrink-0 w-60 h-[22rem] rounded-2xl overflow-hidden shadow-2xl opacity-45" style={{ transform: 'rotateY(50deg) translateZ(220px)' }}>
+            <img
+              src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=500&h=700&fit=crop"
+              alt="Team member"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          {/* Paire 3 */}
+          <div className="flex-shrink-0 w-48 h-72 rounded-2xl overflow-hidden shadow-2xl opacity-60" style={{ transform: 'rotateY(30deg) translateZ(150px)' }}>
+            <img
+              src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=500&h=700&fit=crop"
+              alt="Team member"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          {/* Centre - LES PLUS PETITES (paire 4) */}
+          <div className="flex-shrink-0 w-32 h-48 rounded-2xl overflow-hidden shadow-2xl" style={{ transform: 'rotateY(8deg) translateZ(40px)' }}>
+            <img
+              src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=500&h=700&fit=crop"
+              alt="Team member"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="flex-shrink-0 w-32 h-48 rounded-2xl overflow-hidden shadow-2xl" style={{ transform: 'rotateY(-8deg) translateZ(40px)' }}>
+            <img
+              src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500&h=700&fit=crop"
+              alt="Team member"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          {/* Paire 3 miroir */}
+          <div className="flex-shrink-0 w-48 h-72 rounded-2xl overflow-hidden shadow-2xl opacity-60" style={{ transform: 'rotateY(-30deg) translateZ(150px)' }}>
+            <img
+              src="https://images.unsplash.com/photo-1556157382-97eda2d62296?w=500&h=700&fit=crop"
+              alt="Team member"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          {/* Paire 2 miroir */}
+          <div className="flex-shrink-0 w-60 h-[22rem] rounded-2xl overflow-hidden shadow-2xl opacity-45" style={{ transform: 'rotateY(-50deg) translateZ(220px)' }}>
+            <img
+              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=700&fit=crop"
+              alt="Team member"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          {/* Extrémité droite - LA PLUS GRANDE (paire 1 miroir) */}
+          <div className="flex-shrink-0 w-72 h-[28rem] rounded-2xl overflow-hidden shadow-2xl opacity-30" style={{ transform: 'rotateY(-65deg) translateZ(280px)' }}>
+            <img
+              src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=500&h=700&fit=crop"
+              alt="Team member"
+              className="w-full h-full object-cover"
+            />
           </div>
         </div>
+      </div>
 
+      <div className="px-8 pb-12">
         {/* Features */}
         <div className="max-w-5xl mx-auto grid grid-cols-3 gap-16 px-4">
           <div className="text-center">
@@ -137,7 +140,7 @@ export default function Home() {
             </p>
           </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 }
