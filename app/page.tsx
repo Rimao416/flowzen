@@ -48,11 +48,11 @@ export default function Home() {
           </button>
         </div>
 
-        {/* Team Photos Carousel - Full Screen Width */}
-        <div className="relative w-screen left-1/2 right-1/2 -mx-[50vw] overflow-hidden mb-20" style={{ perspective: '800px' }}>
-          <div className="flex items-center justify-center gap-6 py-16 px-4" style={{ transformStyle: 'preserve-3d' }}>
-            {/* Extrémité gauche - LA PLUS GRANDE */}
-            <div className="flex-shrink-0 w-96 h-[500px] rounded-2xl overflow-hidden shadow-2xl opacity-35" style={{ transform: 'rotateY(75deg) translateZ(350px)' }}>
+       {/* Team Photos Carousel - Full Screen Width */}
+        <div className="relative w-full overflow-hidden mb-20" style={{ perspective: '1200px' }}>
+          <div className="flex items-center justify-center gap-3 py-16 px-4" style={{ transformStyle: 'preserve-3d' }}>
+            {/* Extrémités - LES PLUS GRANDES (paire 1) */}
+            <div className="flex-shrink-0 w-52 h-72 rounded-2xl overflow-hidden shadow-2xl opacity-40" style={{ transform: 'rotateY(55deg) translateZ(200px)' }}>
               <img
                 src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=700&fit=crop"
                 alt="Team member"
@@ -60,7 +60,8 @@ export default function Home() {
               />
             </div>
 
-            <div className="flex-shrink-0 w-80 h-[420px] rounded-2xl overflow-hidden shadow-2xl opacity-45" style={{ transform: 'rotateY(62deg) translateZ(280px)' }}>
+            {/* Paire 2 */}
+            <div className="flex-shrink-0 w-48 h-64 rounded-2xl overflow-hidden shadow-2xl opacity-55" style={{ transform: 'rotateY(40deg) translateZ(150px)' }}>
               <img
                 src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=500&h=700&fit=crop"
                 alt="Team member"
@@ -68,7 +69,8 @@ export default function Home() {
               />
             </div>
 
-            <div className="flex-shrink-0 w-64 h-[360px] rounded-2xl overflow-hidden shadow-2xl opacity-55" style={{ transform: 'rotateY(48deg) translateZ(220px)' }}>
+            {/* Paire 3 */}
+            <div className="flex-shrink-0 w-44 h-60 rounded-2xl overflow-hidden shadow-2xl opacity-70" style={{ transform: 'rotateY(22deg) translateZ(100px)' }}>
               <img
                 src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=500&h=700&fit=crop"
                 alt="Team member"
@@ -76,7 +78,8 @@ export default function Home() {
               />
             </div>
 
-            <div className="flex-shrink-0 w-52 h-[300px] rounded-2xl overflow-hidden shadow-2xl opacity-65" style={{ transform: 'rotateY(35deg) translateZ(160px)' }}>
+            {/* Centre - LES PLUS PETITES (paire 4) */}
+            <div className="flex-shrink-0 w-40 h-56 rounded-2xl overflow-hidden shadow-2xl opacity-90" style={{ transform: 'rotateY(7deg) translateZ(35px)' }}>
               <img
                 src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=500&h=700&fit=crop"
                 alt="Team member"
@@ -84,16 +87,7 @@ export default function Home() {
               />
             </div>
 
-            <div className="flex-shrink-0 w-44 h-64 rounded-2xl overflow-hidden shadow-2xl opacity-75" style={{ transform: 'rotateY(20deg) translateZ(90px)' }}>
-              <img
-                src="https://images.unsplash.com/photo-1557862921-37829c790f19?w=500&h=700&fit=crop"
-                alt="Team member"
-                className="w-full h-full object-cover"
-              />
-            </div>
-
-            {/* Centre - LA PLUS PETITE */}
-            <div className="flex-shrink-0 w-36 h-52 rounded-2xl overflow-hidden shadow-2xl" style={{ transform: 'rotateY(0deg) translateZ(0px)' }}>
+            <div className="flex-shrink-0 w-40 h-56 rounded-2xl overflow-hidden shadow-2xl opacity-90" style={{ transform: 'rotateY(-7deg) translateZ(35px)' }}>
               <img
                 src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500&h=700&fit=crop"
                 alt="Team member"
@@ -101,7 +95,8 @@ export default function Home() {
               />
             </div>
 
-            <div className="flex-shrink-0 w-44 h-64 rounded-2xl overflow-hidden shadow-2xl opacity-75" style={{ transform: 'rotateY(-20deg) translateZ(90px)' }}>
+            {/* Paire 3 miroir */}
+            <div className="flex-shrink-0 w-44 h-60 rounded-2xl overflow-hidden shadow-2xl opacity-70" style={{ transform: 'rotateY(-22deg) translateZ(100px)' }}>
               <img
                 src="https://images.unsplash.com/photo-1556157382-97eda2d62296?w=500&h=700&fit=crop"
                 alt="Team member"
@@ -109,7 +104,8 @@ export default function Home() {
               />
             </div>
 
-            <div className="flex-shrink-0 w-52 h-[300px] rounded-2xl overflow-hidden shadow-2xl opacity-65" style={{ transform: 'rotateY(-35deg) translateZ(160px)' }}>
+            {/* Paire 2 miroir */}
+            <div className="flex-shrink-0 w-48 h-64 rounded-2xl overflow-hidden shadow-2xl opacity-55" style={{ transform: 'rotateY(-40deg) translateZ(150px)' }}>
               <img
                 src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=700&fit=crop"
                 alt="Team member"
@@ -117,26 +113,10 @@ export default function Home() {
               />
             </div>
 
-            <div className="flex-shrink-0 w-64 h-[360px] rounded-2xl overflow-hidden shadow-2xl opacity-55" style={{ transform: 'rotateY(-48deg) translateZ(220px)' }}>
-              <img
-                src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=500&h=700&fit=crop"
-                alt="Team member"
-                className="w-full h-full object-cover"
-              />
-            </div>
-
-            <div className="flex-shrink-0 w-80 h-[420px] rounded-2xl overflow-hidden shadow-2xl opacity-45" style={{ transform: 'rotateY(-62deg) translateZ(280px)' }}>
+            {/* Extrémité droite - LA PLUS GRANDE (paire 1 miroir) */}
+            <div className="flex-shrink-0 w-52 h-72 rounded-2xl overflow-hidden shadow-2xl opacity-40" style={{ transform: 'rotateY(-55deg) translateZ(200px)' }}>
               <img
                 src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=500&h=700&fit=crop"
-                alt="Team member"
-                className="w-full h-full object-cover"
-              />
-            </div>
-
-            {/* Extrémité droite - LA PLUS GRANDE */}
-            <div className="flex-shrink-0 w-96 h-[500px] rounded-2xl overflow-hidden shadow-2xl opacity-35" style={{ transform: 'rotateY(-75deg) translateZ(350px)' }}>
-              <img
-                src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500&h=700&fit=crop"
                 alt="Team member"
                 className="w-full h-full object-cover"
               />
