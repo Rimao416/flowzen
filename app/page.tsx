@@ -1,4 +1,69 @@
 export default function Home() {
+  // Configuration dynamique du carousel
+  const teamPhotos = [
+    { id: 1, url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=700&fit=crop" },
+    { id: 2, url: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=500&h=700&fit=crop" },
+    { id: 3, url: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=500&h=700&fit=crop" },
+    { id: 4, url: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=500&h=700&fit=crop" },
+    { id: 5, url: "https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=500&h=700&fit=crop" },
+    { id: 6, url: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500&h=700&fit=crop" },
+    { id: 7, url: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&h=700&fit=crop" },
+    { id: 8, url: "https://images.unsplash.com/photo-1556157382-97eda2d62296?w=500&h=700&fit=crop" },
+    { id: 9, url: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=500&h=700&fit=crop" },
+    { id: 10, url: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&h=700&fit=crop" },
+  ];
+
+  // Calcul pour centrer parfaitement (nombre impair d'images = 1 au centre, pair = 2 au centre)
+  const totalImages = teamPhotos.length;
+  const isOdd = totalImages % 2 === 1;
+  const centerIndex = Math.floor(totalImages / 2);
+
+  // Fonction pour calculer les propriétés de chaque carte
+  const getCardStyle = (index) => {
+    // Pour nombre impair : index 5 est au centre (distance 0)
+    // Pour nombre pair : indices 5 et 6 sont au centre (distance 0)
+    let distanceFromCenter;
+    
+    if (isOdd) {
+      distanceFromCenter = index - centerIndex;
+    } else {
+      // Pour nombre pair, on calcule la distance depuis le milieu entre les 2 images centrales
+      distanceFromCenter = index < centerIndex ? index - centerIndex + 0.5 : index - centerIndex + 0.5;
+    }
+    
+    const absDistance = Math.abs(distanceFromCenter);
+    
+    // Configuration symétrique : plus on s'éloigne du centre, plus les images sont grandes
+    const configs = [
+      { rotation: 5, depth: 12, opacity: 1, width: 'w-24', height: 'h-40', spacing: -2 },       // Centre (position 0)
+      { rotation: 18, depth: 35, opacity: 0.8, width: 'w-28', height: 'h-44', spacing: 0 },    // Position 1
+      { rotation: 35, depth: 70, opacity: 0.6, width: 'w-32', height: 'h-48', spacing: 10 },   // Position 2
+      { rotation: 55, depth: 110, opacity: 0.4, width: 'w-36', height: 'h-56', spacing: 48 },  // Position 3 (images 3 et 8)
+      { rotation: 75, depth: 150, opacity: 0.2, width: 'w-40', height: 'h-76', spacing: 90 },  // Position 4 (images 2 et 9)
+      { rotation: 90, depth: 180, opacity: 0.15, width: 'w-44', height: 'h-72', spacing: 96 }, // Position 5+ (images 1 et 10 - extrémités)
+    ];
+    
+    // Utiliser la distance absolue pour avoir la même config pour les paires
+    const configIndex = Math.min(Math.floor(absDistance), configs.length - 1);
+    const config = configs[configIndex];
+    
+    // Rotation : négative à droite, positive à gauche
+    const rotation = distanceFromCenter > 0 ? -config.rotation : config.rotation;
+    
+    // Espacement : ajouté du côté extérieur de chaque image
+    const marginLeft = distanceFromCenter > 0 ? `${config.spacing}px` : '0';
+    const marginRight = distanceFromCenter < 0 ? `${config.spacing}px` : '0';
+    
+    return {
+      transform: `rotateY(${rotation}deg) translateZ(${config.depth}px)`,
+      opacity: config.opacity,
+      width: config.width,
+      height: config.height,
+      marginLeft,
+      marginRight,
+    };
+  };
+
   return (
     <div className="min-h-screen bg-neutral-50">
       {/* Navigation */}
@@ -26,6 +91,7 @@ export default function Home() {
           </button>
         </div>
       </nav>
+
       {/* Hero Section */}
       <main className="px-8 pt-20 pb-12">
         <div className="max-w-3xl mx-auto text-center mb-16">
@@ -47,100 +113,33 @@ export default function Home() {
         </div>
       </main>
      
-      {/* Team Photos Carousel - Tailles Réduites */}
-      <div className="w-full overflow-hidden mb-20" style={{ perspective: '600px' }}>
-        <div className="flex items-center justify-center py-12 px-8" style={{ transformStyle: 'preserve-3d' }}>
-          {/* Extrémité gauche */}
-          <div className="flex-shrink-0 w-32 h-44 rounded-xl overflow-hidden shadow-xl opacity-20 mx-2" style={{ transform: 'rotateY(75deg) translateZ(120px)' }}>
-            <img
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=700&fit=crop"
-              alt="Team member"
-              className="w-full h-full object-cover"
-            />
-          </div>
-         
-          {/* Paire 2 gauche */}
-          <div className="flex-shrink-0 w-28 h-40 rounded-xl overflow-hidden shadow-xl opacity-40 mx-2" style={{ transform: 'rotateY(55deg) translateZ(90px)' }}>
-            <img
-              src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=500&h=700&fit=crop"
-              alt="Team member"
-              className="w-full h-full object-cover"
-            />
-          </div>
-         
-          {/* Paire 3 gauche */}
-          <div className="flex-shrink-0 w-24 h-36 rounded-xl overflow-hidden shadow-xl opacity-60 mx-2" style={{ transform: 'rotateY(35deg) translateZ(60px)' }}>
-            <img
-              src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=500&h=700&fit=crop"
-              alt="Team member"
-              className="w-full h-full object-cover"
-            />
-          </div>
-         
-          {/* Paire 4 gauche */}
-          <div className="flex-shrink-0 w-20 h-32 rounded-xl overflow-hidden shadow-xl opacity-80 mx-2" style={{ transform: 'rotateY(18deg) translateZ(30px)' }}>
-            <img
-              src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=500&h=700&fit=crop"
-              alt="Team member"
-              className="w-full h-full object-cover"
-            />
-          </div>
-         
-          {/* Centre gauche */}
-          <div className="flex-shrink-0 w-16 h-28 rounded-xl overflow-hidden shadow-xl mx-2" style={{ transform: 'rotateY(5deg) translateZ(10px)' }}>
-            <img
-              src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=500&h=700&fit=crop"
-              alt="Team member"
-              className="w-full h-full object-cover"
-            />
-          </div>
-         
-          {/* Centre droite */}
-          <div className="flex-shrink-0 w-16 h-28 rounded-xl overflow-hidden shadow-xl mx-2" style={{ transform: 'rotateY(-5deg) translateZ(10px)' }}>
-            <img
-              src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500&h=700&fit=crop"
-              alt="Team member"
-              className="w-full h-full object-cover"
-            />
-          </div>
-         
-          {/* Paire 4 droite */}
-          <div className="flex-shrink-0 w-20 h-32 rounded-xl overflow-hidden shadow-xl opacity-80 mx-2" style={{ transform: 'rotateY(-18deg) translateZ(30px)' }}>
-            <img
-              src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&h=700&fit=crop"
-              alt="Team member"
-              className="w-full h-full object-cover"
-            />
-          </div>
-         
-          {/* Paire 3 droite */}
-          <div className="flex-shrink-0 w-24 h-36 rounded-xl overflow-hidden shadow-xl opacity-60 mx-2" style={{ transform: 'rotateY(-35deg) translateZ(60px)' }}>
-            <img
-              src="https://images.unsplash.com/photo-1556157382-97eda2d62296?w=500&h=700&fit=crop"
-              alt="Team member"
-              className="w-full h-full object-cover"
-            />
-          </div>
-         
-          {/* Paire 2 droite */}
-          <div className="flex-shrink-0 w-28 h-40 rounded-xl overflow-hidden shadow-xl opacity-40 mx-2" style={{ transform: 'rotateY(-55deg) translateZ(90px)' }}>
-            <img
-              src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=500&h=700&fit=crop"
-              alt="Team member"
-              className="w-full h-full object-cover"
-            />
-          </div>
-         
-          {/* Extrémité droite */}
-          <div className="flex-shrink-0 w-32 h-44 rounded-xl overflow-hidden shadow-xl opacity-20 mx-2" style={{ transform: 'rotateY(-75deg) translateZ(120px)' }}>
-            <img
-              src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=500&h=700&fit=crop"
-              alt="Team member"
-              className="w-full h-full object-cover"
-            />
-          </div>
+      {/* Team Photos Carousel - Version Dynamique */}
+      <div className="w-full overflow-hidden mb-20" style={{ perspective: '700px' }}>
+        <div className="flex items-center justify-center py-14 px-8 gap-6" style={{ transformStyle: 'preserve-3d' }}>
+          {teamPhotos.map((photo, index) => {
+            const style = getCardStyle(index);
+            return (
+              <div
+                key={photo.id}
+                className={`flex-shrink-0 ${style.width} ${style.height} rounded-xl overflow-hidden shadow-xl transition-all duration-300 hover:scale-105`}
+                style={{
+                  transform: style.transform,
+                  opacity: style.opacity,
+                  marginLeft: style.marginLeft,
+                  marginRight: style.marginRight,
+                }}
+              >
+                <img
+                  src={photo.url}
+                  alt={`Team member ${index + 1}`}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
+
       {/* Features */}
       <div className="px-8 pb-12">
         <div className="max-w-5xl mx-auto grid grid-cols-3 gap-16 px-4">
