@@ -1,3 +1,6 @@
+"use client"
+import { useState, useEffect } from 'react';
+
 export default function Home() {
   // Configuration dynamique du carousel
   const teamPhotos = [
@@ -13,44 +16,47 @@ export default function Home() {
     { id: 10, url: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&h=700&fit=crop" },
   ];
 
-  // Calcul pour centrer parfaitement (nombre impair d'images = 1 au centre, pair = 2 au centre)
+  const [offset, setOffset] = useState(0);
+
+  // Rotation automatique toutes les 3 secondes
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setOffset(prev => (prev + 1) % teamPhotos.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [teamPhotos.length]);
+
+  // Calcul pour centrer parfaitement
   const totalImages = teamPhotos.length;
   const isOdd = totalImages % 2 === 1;
   const centerIndex = Math.floor(totalImages / 2);
 
   // Fonction pour calculer les propriétés de chaque carte
   const getCardStyle = (index) => {
-    // Pour nombre impair : index 5 est au centre (distance 0)
-    // Pour nombre pair : indices 5 et 6 sont au centre (distance 0)
     let distanceFromCenter;
     
     if (isOdd) {
       distanceFromCenter = index - centerIndex;
     } else {
-      // Pour nombre pair, on calcule la distance depuis le milieu entre les 2 images centrales
       distanceFromCenter = index < centerIndex ? index - centerIndex + 0.5 : index - centerIndex + 0.5;
     }
     
     const absDistance = Math.abs(distanceFromCenter);
     
-    // Configuration symétrique : plus on s'éloigne du centre, plus les images sont grandes
     const configs = [
-      { rotation: 5, depth: 12, opacity: 1, width: 'w-24', height: 'h-40', spacing: -2 },       // Centre (position 0)
-      { rotation: 18, depth: 35, opacity: 0.8, width: 'w-28', height: 'h-44', spacing: 0 },    // Position 1
-      { rotation: 35, depth: 70, opacity: 0.6, width: 'w-32', height: 'h-48', spacing: 10 },   // Position 2
-      { rotation: 55, depth: 110, opacity: 0.4, width: 'w-36', height: 'h-56', spacing: 48 },  // Position 3 (images 3 et 8)
-      { rotation: 75, depth: 150, opacity: 0.2, width: 'w-40', height: 'h-76', spacing: 90 },  // Position 4 (images 2 et 9)
-      { rotation: 90, depth: 180, opacity: 0.15, width: 'w-44', height: 'h-72', spacing: 96 }, // Position 5+ (images 1 et 10 - extrémités)
+      { rotation: 5, depth: 12, opacity: 1, width: 'w-24', height: 'h-40', spacing: -2 },
+      { rotation: 18, depth: 35, opacity: 0.8, width: 'w-28', height: 'h-44', spacing: 0 },
+      { rotation: 35, depth: 70, opacity: 0.6, width: 'w-32', height: 'h-48', spacing: 10 },
+      { rotation: 55, depth: 110, opacity: 0.4, width: 'w-36', height: 'h-56', spacing: 48 },
+      { rotation: 75, depth: 150, opacity: 0.2, width: 'w-40', height: 'h-76', spacing: 90 },
+      { rotation: 90, depth: 180, opacity: 0.15, width: 'w-44', height: 'h-72', spacing: 96 },
     ];
     
-    // Utiliser la distance absolue pour avoir la même config pour les paires
     const configIndex = Math.min(Math.floor(absDistance), configs.length - 1);
     const config = configs[configIndex];
     
-    // Rotation : négative à droite, positive à gauche
     const rotation = distanceFromCenter > 0 ? -config.rotation : config.rotation;
-    
-    // Espacement : ajouté du côté extérieur de chaque image
     const marginLeft = distanceFromCenter > 0 ? `${config.spacing}px` : '0';
     const marginRight = distanceFromCenter < 0 ? `${config.spacing}px` : '0';
     
@@ -62,6 +68,12 @@ export default function Home() {
       marginLeft,
       marginRight,
     };
+  };
+
+  // Fonction pour obtenir l'image correspondant à chaque position
+  const getImageForPosition = (position) => {
+    const imageIndex = (position + offset) % teamPhotos.length;
+    return teamPhotos[imageIndex];
   };
 
   return (
@@ -113,15 +125,17 @@ export default function Home() {
         </div>
       </main>
      
-      {/* Team Photos Carousel - Version Dynamique */}
+      {/* Team Photos Carousel - Cards fixes, images qui changent */}
       <div className="w-full overflow-hidden mb-20" style={{ perspective: '700px' }}>
         <div className="flex items-center justify-center py-14 px-8 gap-6" style={{ transformStyle: 'preserve-3d' }}>
-          {teamPhotos.map((photo, index) => {
+          {Array.from({ length: totalImages }).map((_, index) => {
             const style = getCardStyle(index);
+            const currentImage = getImageForPosition(index);
+            
             return (
               <div
-                key={photo.id}
-                className={`flex-shrink-0 ${style.width} ${style.height} rounded-xl overflow-hidden shadow-xl transition-all duration-300 hover:scale-105`}
+                key={index}
+                className={`flex-shrink-0 ${style.width} ${style.height} rounded-xl overflow-hidden shadow-xl`}
                 style={{
                   transform: style.transform,
                   opacity: style.opacity,
@@ -130,9 +144,10 @@ export default function Home() {
                 }}
               >
                 <img
-                  src={photo.url}
+                  src={currentImage.url}
                   alt={`Team member ${index + 1}`}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-opacity duration-700 ease-in-out"
+                  key={currentImage.id}
                 />
               </div>
             );
