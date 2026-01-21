@@ -55,12 +55,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-neutral-50 relative">
-      {/* Subtle Grid Pattern - Full Page */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{
-        backgroundImage: `linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)`,
-        backgroundSize: '64px 64px'
-      }}></div>
-      
       {/* Large Gradient Blur */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] opacity-40 blur-[120px] pointer-events-none" 
            style={{ background: `radial-gradient(circle, #8B7355, transparent 70%)` }}>
